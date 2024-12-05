@@ -6,7 +6,7 @@
 #include "PlayerShip.h"
 #include "Ship.h"
 
-
+// Set Level for transitioning
 void SetLevel()
 {
 	Level* pLevel = new Level();
@@ -24,9 +24,9 @@ void ShipsDestroyed()
 	// check how many ships are destroyed
 	if (EnemyShip::Hit)
 	{
-		if (EnemyShip::Hit == 1)
+		if (EnemyShip::Hit <= 10)
 		{
-			// Increment the number of ships destroyed
+			
 		}
 		else
 		{
