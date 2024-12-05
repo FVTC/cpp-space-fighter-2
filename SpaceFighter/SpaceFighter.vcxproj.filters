@@ -101,6 +101,9 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\Game Objects\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="LevelTransitions.cpp">
+      <Filter>Source Files\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuScreen.h">
