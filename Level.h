@@ -16,12 +16,6 @@ class Level
 
 public:
 
-	// Called when the boss is defeated
-	virtual void OnBossDefeated() {}
-
-
-	std::vector<Projectile*>* GetProjectilePool() { return &m_projectiles; }
-
 	/** @brief Instantiate a level object. */
 	Level();
 	virtual ~Level();
@@ -169,5 +163,7 @@ private:
 	virtual unsigned int GetTotalSectorCount() const { return m_totalSectorCount; }
 
 	virtual std::vector<GameObject*>* GetSectors() { return m_pSectors; }
+
+	Font* m_pFont = nullptr;
 
 };
