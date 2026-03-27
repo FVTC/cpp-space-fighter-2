@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Ship.h"
+#include "AircraftType.h"
 
 /** @brief Represents the player's ship. */
 class PlayerShip : public Ship
@@ -10,13 +11,18 @@ class PlayerShip : public Ship
 public:
 
 	/** @brief Creates a new instance of PlayerShip. */
-	PlayerShip() { }
+	/*PlayerShip(AircraftType type = AircraftType::DefaultFighter)
+		: m_type(type){ }*/
+
+	//PlayerShip(AircraftType type);
+	PlayerShip(AircraftType type, std::vector<Projectile*>* pProjectilePool);
 	virtual ~PlayerShip() { }
+
 
 	/** @brief Loads the content for the player ship.
 		@param resourceManager A reference to the game's resource manager,
 		used for loading and managing game assets (resources). */
-	virtual void LoadContent(ResourceManager& resourceManager);
+	virtual void LoadContent(ResourceManager& resourceManager) ;
 
 	/** @brief Updates the player ship.
 		@param gameTime A reference to the game time object. */
@@ -55,6 +61,13 @@ public:
 		@param isConfined True to confine the player ship to the screen, false otherwise. */
 	virtual void ConfineToScreen(const bool isConfined = true) { m_isConfinedToScreen = isConfined; }
 
+	//==================Added by @Emilien========================
+	virtual void ActivateStealth();
+	virtual void DeactivateStealth();
+	virtual void CheckEnemyCollisions();  // Implement a custom collision override for stealth
+	virtual void IncrementKillCount(); // Count the enemies killed
+	virtual bool IsStealthActive() const { return m_isStealthActive; }
+	virtual void UpdateStealth(float deltaTime);
 
 protected:
 
@@ -70,7 +83,6 @@ protected:
 		@return Returns the desired direction of the player ship. */
 	virtual Vector2 GetDesiredDirection() const { return m_desiredDirection; }
 
-
 private:
 
 	Vector2 m_desiredDirection;
@@ -81,5 +93,21 @@ private:
 	bool m_isConfinedToScreen = false;
 
 	Texture* m_pTexture = nullptr;
+
+	//==================Added by @Emilien========================
+
+	AircraftType m_type; // Store which aircraf selection
+	std::vector<Projectile*>* m_pProjectilePool; // store pointer to vector<Projectile*>
+	/* Stealth Mode*/
+	bool m_isStealthActive = false;       
+	float m_stealthDuration = 0.0f;      
+	float m_maxStealthDuration = 0.0f;   // Maximum stealth duration based on aircraft type
+	int m_killsSinceLastStealth = 0; // Tracks kills since last stealth activation
+	int m_killsToActivateStealth = 3; // Activate stealth every 2 kills
+	AudioSample* m_pStealthSound = nullptr;
+	float GetStealthUnlockRatio() const;
+	//---------- For the countdown
+	Font* m_pStealthFont = nullptr; // Load a font for stealth countdown
+	std::string m_stealthCountdownText;
 
 };

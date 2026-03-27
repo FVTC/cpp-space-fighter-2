@@ -175,8 +175,11 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="CollisionType.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
+    <ClCompile Include="EnemyShipLarge.cpp" />
+    <ClCompile Include="EnemyShipMedium.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameplayScreen.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level01.cpp" />
@@ -185,9 +188,14 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PlayerShip.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SelectAircraftScreen.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="SingleShot.cpp" />
     <ClCompile Include="SpaceFighter.cpp" />
+    <ClCompile Include="SpreadShot.cpp" />
     <ClCompile Include="TriggerType.cpp" />
+    <ClCompile Include="Victory.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,13 +204,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AircraftType.h" />
     <ClInclude Include="BioEnemyShip.h" />
     <ClInclude Include="Blaster.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CollisionType.h" />
     <ClInclude Include="EnemyShip.h" />
+    <ClInclude Include="EnemyShipLarge.h" />
+    <ClInclude Include="EnemyShipMedium.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameplayScreen.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level01.h" />
@@ -210,9 +222,14 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PlayerShip.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="SelectAircraftScreen.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="SingleShot.h" />
     <ClInclude Include="SpaceFighter.h" />
+    <ClInclude Include="SpreadShot.h" />
     <ClInclude Include="TriggerType.h" />
+    <ClInclude Include="Victory.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
