@@ -41,7 +41,8 @@ Level::Level()
 
 	m_pSectors = new std::vector<GameObject *>[m_totalSectorCount];
 	m_pCollisionManager = new CollisionManager();
-	
+
+
 	GameObject::SetCurrentLevel(this);
 
 	// Setup player ship
@@ -49,8 +50,9 @@ Level::Level()
 	Blaster *pBlaster = new Blaster("Main Blaster");
 	pBlaster->SetProjectilePool(&m_projectiles);
 	m_pPlayerShip->AttachItem(pBlaster, Vector2::UNIT_Y * -20);
+	m_bBoss->AttachItem(pBlaster, Vector2::UNIT_Y * -20);
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 200; i++)
 	{
 		Projectile *pProjectile = new Projectile();
 		m_projectiles.push_back(pProjectile);
@@ -88,7 +90,6 @@ Level::~Level()
 void Level::LoadContent(ResourceManager& resourceManager)
 {
 	m_pPlayerShip->LoadContent(resourceManager);
-
 	// Setup explosions if they haven't been already
 	Explosion* pExplosion;
 	if (s_explosions.size() == 0) {
@@ -104,6 +105,8 @@ void Level::LoadContent(ResourceManager& resourceManager)
 			s_explosions.push_back(pExplosion);
 		}
 	}
+
+
 }
 
 
@@ -139,7 +142,7 @@ void Level::Update(const GameTime& gameTime)
 	
 	for (Explosion *pExplosion : s_explosions) pExplosion->Update(gameTime);
 
-	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
+
 }
 
 
@@ -231,6 +234,15 @@ void Level::CheckCollisions(std::vector<GameObject *> &gameObjects)
 			}
 		}
 	}
+}
+
+void Level::Update(const GameTime& gameTime)
+{
+	if (AreAllEnemiesGone() && m_nextLevelIndex);
+	{
+		GetGameplayScreen()->LoadLevel(m_nextLevelIndex);
+	}
+	if (!m_pPlayerShip->IsActive()) GetGameplayScreen()->Exit();
 }
 
 void Level::Draw(SpriteBatch& spriteBatch)

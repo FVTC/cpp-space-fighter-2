@@ -5,6 +5,7 @@
 #include "PlayerShip.h"
 #include "CollisionManager.h"
 #include "Explosion.h"
+#include "Boss.h"
 
 using namespace KatanaEngine;
 
@@ -127,9 +128,17 @@ protected:
 	/** @brief Get the background audio for the level.
 		@return A pointer to the audio sample to play. */
 	virtual AudioSample* GetBackgroundAudio() { return m_pAudio; }
+	
+	bool AreAllEnemiesGone() const;
+
+	int m_nextLevelIndex = 0;
+
+	void SetNextLevelIndex(int index) { m_nextLevelIndex = index; }
+
 
 private:
 
+	std::vector<Projectile*> m_projectiles;
 	static std::vector<Explosion *> s_explosions;
 	//std::vector<Explosion *>::iterator m_explosionIt;
 
@@ -151,6 +160,7 @@ private:
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<GameObject*>::iterator m_gameObjectIt;
 
+	Boss* m_bBoss;
 	PlayerShip* m_pPlayerShip;
 	std::vector<Projectile*> m_projectiles;
 
